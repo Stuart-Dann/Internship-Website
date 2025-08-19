@@ -1,0 +1,41 @@
+.landingPage{
+    color: #56494E;
+}
+
+#intro{
+    margin-top: 5%;
+    margin-left: 5%;
+    font-weight: 200;
+}
+
+h1{
+    font-size: 50px;
+    font-weight: 200;
+}
+h2{
+    font-size: 30px;
+    font-weight: 200;
+}
+
+#start-search {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    background-color: #E5383B;
+    color: white;
+    padding: 1.25em 1.5em;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 24px;
+    align-items: center;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    height: fit-content;
+}
+
+#search-stats{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 10%;
+}
