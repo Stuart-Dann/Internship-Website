@@ -1,18 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { dotenv } from "dotenv";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-dotenv.config();
-
 const firebaseConfig = {
-	apiKey: process.env.FIREBASE_API_KEY,
-	authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
 	projectId: "internship-website-cede9",
 	storageBucket: "internship-website-cede9.firebasestorage.app",
 	messagingSenderId: "897953965153",
@@ -22,4 +19,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
+//Detect auth state
+onAuthStateChanged(auth, (user) => {
+	if (user) {
+		console.log("User is signed in");
+	} else {
+		console.log("No user is signed in");
+	}
+});

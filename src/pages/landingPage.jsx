@@ -1,7 +1,9 @@
 import Navbar from '../components/navbar'
+import Footer from '../components/footer';
 import './landingPage.css';
 import rightArrow from '../assets/rightArrow.svg';
 import CategoryStats from '../components/categoryStats';
+import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
     return (
@@ -15,6 +17,7 @@ export default function LandingPage() {
                 <CategoryStats />
             </div>
         </div>
+        <Footer />
     </div>
     )
 }

@@ -14,7 +14,9 @@ nav {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
     padding-right: 5%;
+    padding-left: 5%;
     border-bottom: 1px solid #E5383B;
     width: 100%;
 }
@@ -26,7 +28,7 @@ nav ul {
 }
 
 nav ul li{
-    font-size: 24px;
+    font-size: 1.25em;
     border: 2px solid transparent;
     padding: 5px;
     transition: all 0.3s ease;
@@ -34,4 +36,51 @@ nav ul li{
 nav ul li:hover {
     border-right: 2px solid #E5383B;
     border-left: 2px solid #E5383B;
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    justify-content: space-between;
+    margin-left: 1em;
+}
+.burger span {
+    display: block;
+    height: 4px;
+    background: #E5383B;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    nav ul {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 1em 0;
+        display: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        z-index: 10;
+    }
+    nav ul.open {
+        display: flex;
+    }
+    .burger {
+        display: flex;
+    }
+    nav {
+        position: relative;
+    }
+    .desktop-menu {
+        display: none;
+    }
 }
