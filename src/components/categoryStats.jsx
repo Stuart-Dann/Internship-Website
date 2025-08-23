@@ -5,11 +5,11 @@ export default function CategoryStats() {
         <div className="category-stats">
             <h2>Internships per Subject</h2>
             <ul>
-                <li>Computer Science: 120</li>
-                <li>Business: 80</li>
-                <li>Engineering: 60</li>
-                <li>Design: 40</li>
-                <li>Marketing: 30</li>
+                <li><span>20</span> Computer Science</li>
+                <li><span>30</span> Business</li>
+                <li><span>10</span> Engineering</li>
+                <li><span>5</span> Design</li>
+                <li><span>10</span> Marketing</li>
             </ul>
         </div>
     );
