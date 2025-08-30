@@ -1,0 +1,136 @@
+#search-page-body{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    padding: 20px;
+}
+
+#search-body{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    margin-top: 5%;
+    align-items: end;
+    height: fit-content;
+
+    p{
+        margin: 0;
+        text-align: center;
+    }
+
+    input{
+        padding: 0.5em;
+        border-radius: 5px;
+        border: 1px solid #E5383B;
+    }
+
+    select{
+        padding: 0.5em;
+        border-radius: 5px;
+        border: 1px solid #E5383B;
+    }
+}
+
+.search-field{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    p{
+        text-align: left;
+    }
+}
+
+#filter-body{
+    margin-top: 8%;
+}
+
+.filters{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border: 2px solid #E5383B;
+    border-radius: 5px;
+    padding: 0.5em;
+}
+
+input {
+        cursor: pointer;
+        accent-color: #E5383B;
+    }
+
+.filter-details{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.filter-stats{
+    color: #7E7E7E;
+    font-size: 0.9em;
+    padding-left: 1em;
+    margin: 0;
+}
+
+.filter-name{
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+#search-results{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+
+#result-header,
+.result {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: stretch;
+    gap: 1em;
+    width: 100%;
+}
+
+#result-header{
+    background-color: #E5383B;
+    color: white;
+}
+
+.result-header-item,
+.result-item {
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+}
+
+#results .result:nth-child(even) {
+    background-color: #D9D9D9;
+}
+
+.result-item:not(:last-child) {
+    border-right: 2px solid #BAB5B5;
+}
+
+#search-input{
+    width: 300px;
+    max-width: 100%;
+}
+
+#status-select{
+    width: 150px;
+}
+
+#search-input::placeholder{
+    color: #807A7A;
+}

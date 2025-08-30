@@ -9,13 +9,7 @@ export default function Navbar() {
     return (
         <div className="navbar">
             <nav>
-                <img src={logo} width={175} height={85} alt="Logo" className="logo" /> 
-                {/* <ul className='desktop-menu'>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/blog">Blog</Link ></li>
-                    <li><Link to="/faq">FAQ</Link ></li>
-                    <li><Link to="/internships">Internships</Link ></li>
-                </ul> */}
+                <Link to="/"><img src={logo} width={175} height={85} alt="Logo" className="logo" /> </Link>
                 <div className={`burger ${open ? 'open' : ''}`} onClick={() => setOpen(!open)}>
                     <span />
                     <span />
@@ -23,8 +17,6 @@ export default function Navbar() {
                 </div>
                 <ul className={open ? 'open' : ''}>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/blog">Blog</Link ></li>
-                    <li><Link to="/faq">FAQ</Link ></li>
                     <li><Link to="/internships">Internships</Link ></li>
                 </ul>
             </nav>

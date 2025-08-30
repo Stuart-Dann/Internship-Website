@@ -6,6 +6,7 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    height: fit-content;
     @media (max-width: 600px) {
         align-items: center;
         gap: 1.5em;
