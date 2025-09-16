@@ -1,0 +1,63 @@
+.dialog-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.dialog-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 1em;
+    border-radius: 8px;
+    z-index: 1001;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.login-input{
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.login-label{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.login-button{
+    background-color: #E5383B;
+    color: white;
+    border: none;
+    padding: 1em 2em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover{
+    background-color: #b32a2f;
+}
+
+.admin-login{
+    font-size: 0.5em;
+    border: transparent;
+    border-bottom: 1px solid #E5383B;
+    cursor: pointer;
+    background-color: white;
+}

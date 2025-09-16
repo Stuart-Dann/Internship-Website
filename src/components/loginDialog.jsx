@@ -1,0 +1,80 @@
+import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { useState } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../services/firebase';
+import './loginDialog.css';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/useAuth';
+import { useEffect } from 'react';
+import { useCallback } from 'react';
+
+
+export default function LoginDialog() {
+    let [isOpen, setIsOpen] = useState(false);
+    let [isAdmin, setIsAdmin] = useState(false)
+    const { user } = useAuth();
+
+    const checkAdmin = useCallback(async () => {
+        if (user) {
+            const tokenResult = await user.getIdTokenResult();
+            if (tokenResult.claims.admin) {
+                setIsAdmin(true);
+            }
+        }
+    }, [user]);
+
+    const signOut = async () => {
+        await auth.signOut(auth);
+        setIsAdmin(false);
+    };
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        const email = event.target[0].value;
+        const password = event.target[1].value;
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const tokenResult = await userCredential.user.getIdTokenResult();
+        if (tokenResult.claims.admin){
+            setIsAdmin(true)
+        }
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            checkAdmin();
+        }
+    }, [isOpen, checkAdmin]);
+
+
+    return (
+        <>
+        <button onClick={() => setIsOpen(true)} className='admin-login'>Admin Login</button>
+        <Dialog open={isOpen} onClose={() => setIsOpen(false)} className={"dialog-root"}>
+            <div className="dialog-backdrop" aria-hidden="true" />
+            <div className="dialog-container">
+                <DialogPanel>
+                    <DialogTitle>Admin Login</DialogTitle>
+                    <Description>Login to access admin panel</Description>
+                    {isAdmin ? 
+                    <>
+                        <p>Already logged in click <Link to='/admin'>here</Link> to access the admin screen.</p>
+                        <p>or <a onClick={signOut}>here</a> to sign out</p>
+                    </>
+                    :
+                    <form onSubmit={handleLogin} className='login-form'>
+                        <div className='login-label'>
+                            <label>Email:</label>
+                            <label>Password:</label>
+                        </div>
+                        <div className='login-input'>
+                            <input type="text" placeholder="Email" />
+                            <input type="password" placeholder="Password" />
+                        </div>
+                        <button type="submit" className='login-button'>Login</button>
+                    </form>}
+                </DialogPanel>
+            </div>
+        </Dialog>
+        </>
+    )
+}

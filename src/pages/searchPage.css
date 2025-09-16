@@ -31,6 +31,10 @@
     }
 }
 
+#filter-body{
+    margin-top: 8%;
+}
+
 .search-field{
     display: flex;
     flex-direction: column;
@@ -40,50 +44,9 @@
     }
 }
 
-#filter-body{
-    margin-top: 8%;
-}
-
-.filters{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    border: 2px solid #E5383B;
-    border-radius: 5px;
-    padding: 0.5em;
-}
-
 input {
-        cursor: pointer;
-        accent-color: #E5383B;
-    }
-
-.filter-details{
-    display: flex;
-    flex-direction: row;
-    gap: 0.5em;
-    align-items: center;
-}
-
-.filter-stats{
-    color: #7E7E7E;
-    font-size: 0.9em;
-    padding-left: 1em;
-    margin: 0;
-}
-
-.filter-name{
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
-    display: flex;
-    justify-content: center;
-}
-
-.filter{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1em;
+    cursor: pointer;
+    accent-color: #E5383B;
 }
 
 #search-results{
@@ -91,35 +54,6 @@ input {
     flex-direction: column;
     gap: 1em;
     width: 100%;
-}
-
-#result-header,
-.result {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    align-items: stretch;
-    gap: 1em;
-    width: 100%;
-}
-
-#result-header{
-    background-color: #E5383B;
-    color: white;
-}
-
-.result-header-item,
-.result-item {
-    text-align: center;
-    padding: 0.5em;
-    margin: 0;
-}
-
-#results .result:nth-child(even) {
-    background-color: #D9D9D9;
-}
-
-.result-item:not(:last-child) {
-    border-right: 2px solid #BAB5B5;
 }
 
 #search-input{
@@ -133,4 +67,51 @@ input {
 
 #search-input::placeholder{
     color: #807A7A;
+}
+
+/* ...existing code... */
+
+/* Responsive styles for screens 600px and below */
+@media (max-width: 600px) {
+    #search-page-body {
+        flex-direction: column;
+        gap: 1em;
+        padding: 10px;
+    }
+
+    #filter-body {
+        margin-top: 0;
+        padding: 0.5em;
+        justify-items: center;
+        padding-right: 5%;
+        padding-left: 5%;
+        flex-direction: row;
+        display: flex;
+    }
+
+    #search-body {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        margin: 0;
+    }
+
+    .search-field {
+        width: 100%;
+        text-align: left;
+    }
+
+    #status-select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #search-input {
+        width: auto;
+        min-width: 0;
+    }
+
+    #search-results {
+        gap: 0.5em;
+    }
 }

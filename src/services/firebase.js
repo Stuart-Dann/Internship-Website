@@ -1,6 +1,9 @@
 // Import the functions you need from the SDKs you need
+import { getFunctions } from "firebase/functions";
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -15,12 +18,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
+const functions = getFunctions(app);
 
-//Detect auth state
-onAuthStateChanged(auth, (user) => {
-	if (user) {
-		console.log("User is signed in");
-	} else {
-		console.log("No user is signed in");
-	}
+// self.FIREBASE_APPCHECK_DEBUG_TOKEN = import.meta.env.VITE_APP_CHECK_DEBUG_TOKEN_FROM_CI;
+
+const appcheck = initializeAppCheck(app, {
+	provider: new ReCaptchaV3Provider("6LeH5ccrAAAAAN1oL8QZbnHXH5yQ0RjKj-HAPhQ9"),
+	isTokenAutoRefreshEnabled: true,
 });
+
+export { auth, db, functions };
