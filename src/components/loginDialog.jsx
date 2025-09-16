@@ -1,6 +1,6 @@
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut as firebaseSignOut } from 'firebase/auth';
 import { auth } from '../services/firebase';
 import './loginDialog.css';
 import { Link } from 'react-router-dom';
@@ -24,27 +24,30 @@ export default function LoginDialog() {
     }, [user]);
 
     const signOut = async () => {
-        await auth.signOut(auth);
-        setIsAdmin(false);
+        await firebaseSignOut(auth);        setIsAdmin(false);
     };
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        const email = event.target[0].value;
-        const password = event.target[1].value;
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const tokenResult = await userCredential.user.getIdTokenResult();
-        if (tokenResult.claims.admin){
-            setIsAdmin(true)
+        const formData = new FormData(event.target);
+        const email = formData.get('email');
+        const password = formData.get('password');
+        
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const tokenResult = await userCredential.user.getIdTokenResult();
+            if (tokenResult.claims.admin){
+                setIsAdmin(true)
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
         }
     };
-
     useEffect(() => {
         if (isOpen) {
             checkAdmin();
         }
     }, [isOpen, checkAdmin]);
-
 
     return (
         <>
@@ -67,8 +70,8 @@ export default function LoginDialog() {
                             <label>Password:</label>
                         </div>
                         <div className='login-input'>
-                            <input type="text" placeholder="Email" />
-                            <input type="password" placeholder="Password" />
+                            <input type="email" placeholder="Email" name='email' />
+                            <input type="password" placeholder="Password" name='password' />
                         </div>
                         <button type="submit" className='login-button'>Login</button>
                     </form>}

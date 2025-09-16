@@ -21,11 +21,10 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const functions = getFunctions(app);
 
-// self.FIREBASE_APPCHECK_DEBUG_TOKEN = import.meta.env.VITE_APP_CHECK_DEBUG_TOKEN_FROM_CI;
+self.FIREBASE_APPCHECK_DEBUG_TOKEN = import.meta.env.VITE_APP_CHECK_DEBUG_TOKEN_FROM_CI;
 
 const appcheck = initializeAppCheck(app, {
-	provider: new ReCaptchaV3Provider("6LeH5ccrAAAAAN1oL8QZbnHXH5yQ0RjKj-HAPhQ9"),
+	provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_SITE_KEY),
 	isTokenAutoRefreshEnabled: true,
 });
-
 export { auth, db, functions };

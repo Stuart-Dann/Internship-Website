@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from '../contexts/useAuth';
 import './adminPage.css';
 import Navbar from '../components/navbar';
@@ -8,6 +9,10 @@ import { addInternship } from '../services/firestore';
 export default function AdminPage() {
     const [isAdmin, setIsAdmin] = useState(false);
     const { user } = useAuth();
+
+    const notify = (msg, type) => {
+        toast(msg, { type });
+    };
 
     const addInternshipHandler = async (e) => {
         e.preventDefault();
@@ -23,9 +28,10 @@ export default function AdminPage() {
 
         try {
             await addInternship(internshipData);
-            alert("Internship added successfully!");
+            notify("Internship added successfully!", 'success');
+            e.target.reset(); // Reset form after success
         } catch (error) {
-            alert("Failed to add internship. Please try again.");
+            notify("Failed to add internship. Please try again.", 'error');
         }
     };
 
@@ -49,20 +55,21 @@ export default function AdminPage() {
                 <div className='admin-page'>
                 <h1 className='admin-title'>Welcome to the Admin Page</h1>
                 <form className='admin-form' onSubmit={addInternshipHandler}>
-                    <label>Program:</label>
-                    <input type="text" name="program" />
-                    <label>Company:</label>
-                    <input type="text" name="company" />
-                    <label>Subject:</label>
-                    <input type="text" name="subject" />
-                    <label>Location:</label>
-                    <input type="text" name="location" />
-                    <label>Link:</label>
-                    <input type="text" name="href" />
-                    <label>Closing Date:</label>
-                    <input type="date" name="closingDate" />
+                    <label htmlFor='program'>Program:</label>
+                    <input id='program' type="text" name="program" autoComplete='off'/>
+                    <label htmlFor='company'>Company:</label>
+                    <input id='company' type="text" name="company" autoComplete='off'/>
+                    <label htmlFor='subject'>Subject:</label>
+                    <input id='subject' type="text" name="subject" autoComplete='off'/>
+                    <label htmlFor='location'>Location:</label>
+                    <input id='location' type="text" name="location" autoComplete='off'/>
+                    <label htmlFor='href'>Link:</label>
+                    <input id='href' type="text" name="href" autoComplete='off'/>
+                    <label htmlFor='closingDate'>Closing Date:</label>
+                    <input id='closingDate' type="date" name="closingDate" />
                     <button type="submit">Add</button>
                 </form>
+                <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
                 </div>
             ) : (
                 <p>You do not have permission to view this page.</p>

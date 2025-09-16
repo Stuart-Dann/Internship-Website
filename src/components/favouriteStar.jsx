@@ -11,10 +11,13 @@ export default function FavouriteStar({ initial = false, onToggle }) {
 
     return (
         <span className='favourite-star'
-        onClick={toggle}
-        style={{ cursor: "pointer", color: isFavourite ? "gold" : "grey" }}
+            onClick={toggle}
+            role="button"
+            tabIndex={0}
+            aria-label={isFavourite ? "Remove from favourites" : "Add to favourites"}
+            onKeyDown={(e) => e.key === 'Enter' && toggle()}
+            style={{ cursor: "pointer", color: isFavourite ? "gold" : "grey" }}
         >
-        ★
+            ★
         </span>
-    );
-}
+    );}

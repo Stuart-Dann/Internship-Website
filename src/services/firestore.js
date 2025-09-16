@@ -37,7 +37,7 @@ export async function getInternships() {
 		const internships = snapshot.docs.map((doc) => ({
 			id: doc.id,
 			...doc.data(),
-			closingDate: doc.data().closingDate.toDate().toLocaleDateString("en-GB"), // Format date
+			closingDate: doc.data().closingDate?.toDate()?.toLocaleDateString("en-GB") || "Invalid date",
 		}));
 		return internships;
 	} catch (error) {
@@ -57,12 +57,13 @@ export function subscribeToItems(callback) {
 			// Format closingDate and filter sensitive fields
 			programs = programs.map((prog) => ({
 				...prog,
-				closingDate: prog.closingDate.toDate().toLocaleDateString("en-GB"),
+				closingDate: prog.closingDate?.toDate()?.toLocaleDateString("en-GB") || "Invalid date",
 			}));
 
 			callback(programs);
 		});
 	} catch (error) {
 		logEvent(analytics, "subscribe_to_items_error", { error: error.message });
+		throw new Error("Failed to fetch internships onSnapshot.");
 	}
 }

@@ -6,7 +6,6 @@ import './navbar.css';
 
 export default function Navbar() {
     const [open, setOpen] = useState(false); // burger menu
-    const isAdmin = false;
     
     return (
     <>
@@ -22,7 +21,6 @@ export default function Navbar() {
                 <ul className={open ? 'open' : ''}>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/internships">Internships</Link></li>
-                {isAdmin && <li><Link to="/admin">Admin</Link></li>}
                 </ul>
             </nav>
         </div>

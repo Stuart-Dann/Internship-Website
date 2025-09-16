@@ -5,36 +5,47 @@ import ResultsTable from '../components/resultsTable';
 import FilterGroup from '../components/filterGroups';
 import useIsMobile from '../hooks/isMobile.js';
 import { useEffect, useState } from 'react';
-import { getInternships, subscribeToItems } from '../services/firestore';
+import { getInternships } from '../services/firestore';
+import { useMemo } from 'react';
 
 export default function SearchPage() {
     const isMobile = useIsMobile();
-
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [programs, setPrograms] = useState([]);
 
     useEffect(() => {
-    // One-time fetch
-        getInternships().then(setPrograms);
-
-        // Real-time updates
-        const unsubscribe = subscribeToItems(setPrograms);
-        return unsubscribe;
+        // One-time fetch with error handling
+        setLoading(true);
+        getInternships()
+            .then(data => {
+                setPrograms(data);
+                setError(false);
+            })
+            .catch(error => {
+                console.error('Failed to fetch internships:', error);
+                setError('Failed to fetch internships. Please try again later.');
+            })
+            .finally(() => setLoading(false));
     }, []);
 
-    const favs = JSON.parse(localStorage.getItem('favourites')) || [];
-    programs.forEach(prog => {
-        if (favs.includes(prog.id)) {
-            prog.isFavourite = true;
+    const enrichedPrograms = useMemo(() => {
+        let favsData = [];
+        let appliedData = [];
+
+        try {
+            favsData = JSON.parse(localStorage.getItem('Favourites')) || [];
+            appliedData = JSON.parse(localStorage.getItem('Applied')) || [];
+        } catch (error) {
+            console.warn('Error reading from localStorage:', error);
         }
-    });
-    const applied = JSON.parse(localStorage.getItem('Applied')) || [];
-    programs.forEach(prog => {
-        if (applied.includes(prog.id)) {
-            prog.status = "Applied";
-        } else {
-            prog.status = "Not Applied";
-        }
-    });
+        
+        return programs.map(prog => ({
+            ...prog,
+            isFavourite: favsData.includes(prog.id),
+            status: appliedData.includes(prog.id) ? "Applied" : "Not Applied"
+        }));
+    }, [programs]);
 
     const filters = [
         {
@@ -97,7 +108,11 @@ export default function SearchPage() {
                         </div>
                     </div>
                     <div id="results-container">
-                        <ResultsTable programs={programs} />
+                        {loading && <p>Loading internships...</p>}
+                        {error && <p className="error-message">{error}</p>}
+                        {!loading && !error && (
+                            <ResultsTable programs={enrichedPrograms} />
+                        )}
                     </div>
                 </div>
             </div>
