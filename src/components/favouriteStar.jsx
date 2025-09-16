@@ -20,4 +20,5 @@ export default function FavouriteStar({ initial = false, onToggle }) {
         >
             ★
         </span>
-    );}
+    );
+}

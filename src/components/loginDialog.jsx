@@ -24,7 +24,8 @@ export default function LoginDialog() {
     }, [user]);
 
     const signOut = async () => {
-        await firebaseSignOut(auth);        setIsAdmin(false);
+        await firebaseSignOut(auth);
+        setIsAdmin(false);
     };
 
     const handleLogin = async (event) => {
