@@ -12,7 +12,7 @@ export default function Navbar() {
         <div className="navbar">
             <LoginDialog />
             <nav>
-                <Link to="/"><img src={logo} width={175} height={85} alt="Logo" className="logo" /></Link>
+                <Link to="/"><img src={logo} width={175} height={85} alt="STEM Searcher Logo" className="logo" /></Link>
                 <div className={`burger ${open ? 'open' : ''}`} onClick={() => setOpen(!open)}>
                 <span />
                 <span />
