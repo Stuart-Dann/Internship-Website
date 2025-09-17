@@ -56,7 +56,7 @@ export default function ResultsTable({ programs: initialPrograms }) {
                             <td>{program.status}</td>
                             <td>
                             <a href={program.href} onClick={() => {
-                                updateStatus(program.id, setPrograms);
+                                updateStatus(program.id);
                             }} target="_blank" rel="noopener noreferrer">
                                 {program.program}<img src={openInNew} alt="Open in new" style={{ width: '1em', height: '1em', verticalAlign: 'middle' }} />
                             </a>
