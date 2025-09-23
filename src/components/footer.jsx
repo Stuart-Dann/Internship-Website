@@ -1,6 +1,6 @@
 import './footer.css';
-import lancaster from '../assets/lancasterUniLogo.png';
-import ukaea from '../assets/ukaea.png'
+// import lancaster from '../assets/lancasterUniLogo.png';
+// import ukaea from '../assets/ukaea.png'
 
 export default function Footer() {
     return (
@@ -10,8 +10,8 @@ export default function Footer() {
                 <a href='mailto:someone@example.com'>Email</a>
             </div>
             <ul>
-                <li><img src={lancaster} alt='Lancaster University'></img></li>
-                <li><img src={ukaea} alt='UK AEA'></img></li>
+                {/* <li><img src={lancaster} alt='Lancaster University'></img></li>
+                <li><img src={ukaea} alt='UK AEA'></img></li> */}
             </ul>
         </div>
     );

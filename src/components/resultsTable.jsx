@@ -15,15 +15,15 @@ export default function ResultsTable({ programs: initialPrograms }) {
     }, [initialPrograms]);
 
     const updateStatus = (id) => {
-    setPrograms(programs.map(prog =>
-        prog.id === id ? { ...prog, status: "Applied" } : prog
-    ));
-    let applied = JSON.parse(localStorage.getItem('Applied')) || [];
-    if (!applied.includes(id)) {
-        applied.push(id);
-        localStorage.setItem('Applied', JSON.stringify(applied));
-    }
-};
+        setPrograms(programs.map(prog =>
+            prog.id === id ? { ...prog, status: "Applied" } : prog
+        ));
+        let applied = JSON.parse(localStorage.getItem('Applied')) || [];
+        if (!applied.includes(id)) {
+            applied.push(id);
+            localStorage.setItem('Applied', JSON.stringify(applied));
+        }
+    };
 
     return (
         <div className="results-inner">
@@ -36,7 +36,9 @@ export default function ResultsTable({ programs: initialPrograms }) {
                     <th>Company Name</th>
                     <th>Location</th>
                     <th>Subject</th>
+                    <th>Open Date</th>
                     <th>Closing Date</th>
+                    <th>Pay</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,7 +66,9 @@ export default function ResultsTable({ programs: initialPrograms }) {
                             <td>{program.company}</td>
                             <td>{program.location}</td>
                             <td>{program.subject}</td>
-                            <td>{program.closingDate}</td>
+                            <td>{new Date(program.openDate).toLocaleDateString("en-GB")}</td>
+                            <td>{new Date(program.closingDate).toLocaleDateString("en-GB")}</td>
+                            <td>{program.pay}</td>
                         </tr>
                         ))
                     )}

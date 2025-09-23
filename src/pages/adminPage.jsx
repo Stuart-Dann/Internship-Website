@@ -23,7 +23,9 @@ export default function AdminPage() {
             subject: formData.get("subject"),
             href: formData.get("href"),
             location: formData.get("location"),
+            openDate: new Date(formData.get("openDate")),
             closingDate: new Date(formData.get("closingDate")),
+            pay: formData.get("pay"),
         };
 
         try {
@@ -31,7 +33,7 @@ export default function AdminPage() {
             notify("Internship added successfully!", 'success');
             e.target.reset(); // Reset form after success
         } catch (error) {
-            notify("Failed to add internship. Please try again.", 'error');
+            notify("Failed to add internship. Please try again.", error.message);
         }
     };
 
@@ -65,8 +67,12 @@ export default function AdminPage() {
                     <input id='location' type="text" name="location" autoComplete='off'/>
                     <label htmlFor='href'>Link:</label>
                     <input id='href' type="text" name="href" autoComplete='off'/>
+                    <label htmlFor='openDate'>Open Date:</label>
+                    <input id='openDate' type="date" name="openDate" />
                     <label htmlFor='closingDate'>Closing Date:</label>
                     <input id='closingDate' type="date" name="closingDate" />
+                    <label htmlFor='pay'>Pay (optional):</label>
+                    <input id='pay' type="text" name="pay" autoComplete='off'/>
                     <button type="submit">Add</button>
                 </form>
                 <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />

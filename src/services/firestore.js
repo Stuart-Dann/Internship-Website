@@ -7,9 +7,9 @@ const analytics = getAnalytics();
 
 // Add an internship
 export async function addInternship(internshipData) {
-	const { program, company, subject, href, location, closingDate } = internshipData;
+	const { program, company, subject, href, location, closingDate, openDate, pay } = internshipData;
 
-	if (!program || !company || !subject || !href || !location || !closingDate) {
+	if (!program || !company || !subject || !href || !location || !closingDate || !openDate) {
 		throw new Error("Missing required fields.");
 	}
 
@@ -20,7 +20,9 @@ export async function addInternship(internshipData) {
 			subject,
 			href,
 			location,
+			openDate: openDate,
 			closingDate: closingDate,
+			pay: pay || "Unpaid",
 		});
 		logEvent(analytics, "add_internship", { id: docRef.id });
 		return { id: docRef.id, message: "Internship added successfully!" };
@@ -37,7 +39,9 @@ export async function getInternships() {
 		const internships = snapshot.docs.map((doc) => ({
 			id: doc.id,
 			...doc.data(),
-			closingDate: doc.data().closingDate?.toDate()?.toLocaleDateString("en-GB") || "Invalid date",
+			openDate: doc.data().openDate?.toDate() || "Invalid date",
+			closingDate: doc.data().closingDate?.toDate() || "Invalid date",
+			pay: doc.data().pay || "Unpaid",
 		}));
 		return internships;
 	} catch (error) {
@@ -57,7 +61,9 @@ export function subscribeToItems(callback) {
 			// Format closingDate and filter sensitive fields
 			programs = programs.map((prog) => ({
 				...prog,
-				closingDate: prog.closingDate?.toDate()?.toLocaleDateString("en-GB") || "Invalid date",
+				openDate: prog.openDate?.toDate() || "Invalid date",
+				closingDate: prog.closingDate?.toDate() || "Invalid date",
+				pay: prog.pay || "Unpaid",
 			}));
 
 			callback(programs);

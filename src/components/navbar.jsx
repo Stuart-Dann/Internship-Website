@@ -12,15 +12,15 @@ export default function Navbar() {
         <div className="navbar">
             <LoginDialog />
             <nav>
-                <Link to="/"><img src={logo} width={175} height={85} alt="STEM Searcher Logo" className="logo" /></Link>
+                <Link to="/"><img src={logo} alt="STEM Searcher Logo" className="logo" /></Link>
                 <div className={`burger ${open ? 'open' : ''}`} onClick={() => setOpen(!open)}>
                 <span />
                 <span />
                 <span />
                 </div>
                 <ul className={open ? 'open' : ''}>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/internships">Internships</Link></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/internships">Internships</Link></li>
                 </ul>
             </nav>
         </div>

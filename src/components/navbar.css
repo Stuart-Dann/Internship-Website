@@ -62,6 +62,13 @@ nav ul li:hover {
     transition: all 0.3s ease;
     cursor: pointer;
 }
+
+.logo{
+    width: 10vw;
+    max-width: 150px;
+    height: auto;
+}
+
 /* Responsive styles */
 @media (max-width: 600px) {
     nav ul {
@@ -89,5 +96,10 @@ nav ul li:hover {
     }
     .desktop-menu {
         display: none;
+    }
+    .logo {
+        width: 30vw;
+        max-width: 150px; 
+        height: auto;
     }
 }
