@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     height: fit-content;
     @media (max-width: 600px) {
         align-items: center;
@@ -13,7 +13,7 @@
     }
 }
 
-.footer ul{
+/* .footer ul{
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -24,7 +24,7 @@
         align-items: center;
         gap: 1.5em;
     }
-}
+} */
 
 #contact-links{
     display: flex;

@@ -9,10 +9,10 @@ export default function Footer() {
                 <p>Contact Us:</p>
                 <a href='mailto:someone@example.com'>Email</a>
             </div>
-            <ul>
+            {/* <ul> */}
                 {/* <li><img src={lancaster} alt='Lancaster University'></img></li>
                 <li><img src={ukaea} alt='UK AEA'></img></li> */}
-            </ul>
+            {/* </ul> */}
         </div>
     );
 }
