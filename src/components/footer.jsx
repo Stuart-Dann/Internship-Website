@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './footer.css';
 // import lancaster from '../assets/lancasterUniLogo.png';
 // import ukaea from '../assets/ukaea.png'
@@ -7,12 +8,9 @@ export default function Footer() {
         <div className="footer">
             <div id='contact-links'>
                 <p>Contact Us:</p>
-                <a href='mailto:someone@example.com'>Email</a>
+                <a href='mailto:StemSearcher.inquiries@gmail.com'>StemSearcher.inquiries@gmail.com</a>
             </div>
-            {/* <ul> */}
-                {/* <li><img src={lancaster} alt='Lancaster University'></img></li>
-                <li><img src={ukaea} alt='UK AEA'></img></li> */}
-            {/* </ul> */}
+            <p><Link to="/cookie-policy">Cookie Policy</Link></p>
         </div>
     );
 }

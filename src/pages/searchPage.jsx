@@ -58,7 +58,7 @@ export default function SearchPage() {
             isFavourite: favsData.includes(prog.id),
             status: appliedData.includes(prog.id) ? "Applied" : "Not Applied",
         }));
-    }, [programs]);
+    }, [programs, selectedFilters, searchQuery, filterByStatus, openProgramsOnly]);
 
     const filteredPrograms = useFilteredPrograms({
         programs: enrichedPrograms,

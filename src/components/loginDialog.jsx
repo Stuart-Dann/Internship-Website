@@ -33,6 +33,13 @@ export default function LoginDialog() {
         const formData = new FormData(event.target);
         const email = formData.get('email');
         const password = formData.get('password');
+        const honeypot = formData.get('honeypot');
+
+        // Check if honeypot field is filled
+        if (honeypot) {
+            console.warn('Spam detected: Honeypot field was filled.');
+            return; // Stop form submission
+        }
         
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -74,7 +81,14 @@ export default function LoginDialog() {
                             <input type="email" placeholder="Email" name='email' />
                             <input type="password" placeholder="Password" name='password' />
                         </div>
-                        <button type="submit" className='login-button'>Login</button>
+                        {/* Honeypot field */}
+                        <input
+                            type="text"
+                            name="honeypot"
+                            style={{ display: 'none' }}
+                            tabIndex={-1}
+                            autoComplete="off"
+                        />                        <button type="submit" className='login-button'>Login</button>
                     </form>}
                 </DialogPanel>
             </div>

@@ -25,8 +25,13 @@ export default function useFilteredPrograms({ programs, selectedFilters, searchQ
 				})();
 			return matchesLocation && matchesSubject && matchesCompany && matchesSearchQuery && matchesStatus && matchesOpenPrograms;
 		});
+		const sorted = filtered.sort((a, b) => {
+			if (a.isFavourite && !b.isFavourite) return -1;
+			if (!a.isFavourite && b.isFavourite) return 1;
+			return 0;
+		});
 
-		setFilteredPrograms(filtered);
+		setFilteredPrograms(sorted);
 	}, [programs, selectedFilters, searchQuery, filterByStatus, openProgramsOnly]);
 
 	return filteredPrograms;

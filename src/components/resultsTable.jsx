@@ -4,6 +4,7 @@ import './resultsTable.css';
 import { addToFavourites } from "../services/favourite";
 import { useState, useEffect } from "react";
 import openInNew from '../assets/open-in-new.svg';
+import useFilteredPrograms from '../hooks/useFilteredPrograms';
 
 export default function ResultsTable({ programs: initialPrograms }) {
     const [programs, setPrograms] = useState(initialPrograms || []);
@@ -14,15 +15,29 @@ export default function ResultsTable({ programs: initialPrograms }) {
         }
     }, [initialPrograms]);
 
-    const updateStatus = (id) => {
-        setPrograms(programs.map(prog =>
-            prog.id === id ? { ...prog, status: "Applied" } : prog
-        ));
-        let applied = JSON.parse(localStorage.getItem('Applied')) || [];
-        if (!applied.includes(id)) {
-            applied.push(id);
-            localStorage.setItem('Applied', JSON.stringify(applied));
-        }
+    // const updateStatus = (id) => {
+    //     setPrograms(programs.map(prog =>
+    //         prog.id === id ? { ...prog, status: "Applied" } : prog
+    //     ));
+    //     let applied = JSON.parse(localStorage.getItem('Applied')) || [];
+    //     if (!applied.includes(id)) {
+    //         applied.push(id);
+    //         localStorage.setItem('Applied', JSON.stringify(applied));
+    //     }
+    // };
+
+    const toggleFavorite = (program) => {
+        const updatedPrograms = programs.map((prog) =>
+            prog.id === program.id ? { ...prog, isFavourite: !prog.isFavourite } : prog
+        );
+        updatedPrograms.sort((a, b) => {
+            if (a.isFavourite && !b.isFavourite) return -1;
+            if (!a.isFavourite && b.isFavourite) return 1;
+            return 0;
+        });
+        setPrograms(updatedPrograms);
+
+        addToFavourites(program.id);
     };
 
     return (
@@ -31,7 +46,7 @@ export default function ResultsTable({ programs: initialPrograms }) {
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Status</th>
+                    {/* <th>Status</th> */}
                     <th>Program Name</th>
                     <th>Company Name</th>
                     <th>Location</th>
@@ -52,14 +67,12 @@ export default function ResultsTable({ programs: initialPrograms }) {
                             <td>
                             <FavouriteStar
                                 initial={program.isFavourite}
-                                onToggle={() => addToFavourites(program.id)}
+                                onToggle={() => toggleFavorite(program)}
                             />
                             </td>
-                            <td>{program.status}</td>
+                            {/* <td>{program.status}</td> */}
                             <td>
-                            <a href={program.href} onClick={() => {
-                                updateStatus(program.id);
-                            }} target="_blank" rel="noopener noreferrer">
+                            <a href={program.href} target="_blank" rel="noopener noreferrer">
                                 {program.program}<img src={openInNew} alt="Open in new" style={{ width: '1em', height: '1em', verticalAlign: 'middle' }} />
                             </a>
                             </td>

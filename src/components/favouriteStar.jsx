@@ -4,9 +4,9 @@ import './favouriteStar.css';
 export default function FavouriteStar({ initial = false, onToggle }) {
     const [isFavourite, setIsFavourite] = useState(initial);
 
-    const toggle = () => {
+    const toggle = (programFavourite) => {
         setIsFavourite(!isFavourite);
-        if (onToggle) onToggle(!isFavourite);
+        if (onToggle) onToggle(() => !isFavourite && !programFavourite);
     };
 
     return (
