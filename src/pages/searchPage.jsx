@@ -21,7 +21,6 @@ export default function SearchPage() {
         company: [],
     });
     const [searchQuery, setSearchQuery] = useState("");
-    const [filterByStatus, setFilterByStatus] = useState("all");
     const [openProgramsOnly, setOpenProgramsOnly] = useState(false);
 
     useEffect(() => {
@@ -58,13 +57,12 @@ export default function SearchPage() {
             isFavourite: favsData.includes(prog.id),
             status: appliedData.includes(prog.id) ? "Applied" : "Not Applied",
         }));
-    }, [programs, selectedFilters, searchQuery, filterByStatus, openProgramsOnly]);
+    }, [programs, selectedFilters, searchQuery, openProgramsOnly]);
 
     const filteredPrograms = useFilteredPrograms({
         programs: enrichedPrograms,
         selectedFilters,
         searchQuery,
-        filterByStatus,
         openProgramsOnly,
     });
 
@@ -79,10 +77,6 @@ export default function SearchPage() {
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value.toLowerCase());
-    };
-
-    const handleFilterByStatusChange = (e) => {
-        setFilterByStatus(e.target.value);
     };
 
     return (
@@ -129,14 +123,6 @@ export default function SearchPage() {
                                 name="search"
                                 placeholder="Search Program Names e.g. Analyst..."
                             />
-                        </div>
-                        <div className="search-field">
-                            <p>Filter By Status:</p>
-                            <select name="status" id="status-select" onChange={handleFilterByStatusChange}>
-                                <option value="all">Any Status</option>
-                                <option value="true">Applied</option>
-                                <option value="false">No Applied</option>
-                            </select>
                         </div>
                         <div id="open-program">
                             <input

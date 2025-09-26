@@ -13,8 +13,6 @@ export default function useFilteredPrograms({ programs, selectedFilters, searchQ
 
 			const matchesSearchQuery = searchQuery === "" || program.program.toLowerCase().includes(searchQuery);
 
-			const matchesStatus = filterByStatus === "all" || (filterByStatus === "true" && program.status === "Applied") || (filterByStatus === "false" && program.status !== "Applied");
-
 			const matchesOpenPrograms =
 				!openProgramsOnly ||
 				(() => {
@@ -23,7 +21,7 @@ export default function useFilteredPrograms({ programs, selectedFilters, searchQ
 					const currentDate = new Date();
 					return !isNaN(openDate.getTime()) && !isNaN(closingDate.getTime()) && openDate <= currentDate && closingDate >= currentDate;
 				})();
-			return matchesLocation && matchesSubject && matchesCompany && matchesSearchQuery && matchesStatus && matchesOpenPrograms;
+			return matchesLocation && matchesSubject && matchesCompany && matchesSearchQuery && matchesOpenPrograms;
 		});
 		const sorted = filtered.sort((a, b) => {
 			if (a.isFavourite && !b.isFavourite) return -1;
