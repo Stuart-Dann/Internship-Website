@@ -4,7 +4,6 @@ import './resultsTable.css';
 import { addToFavourites } from "../services/favourite";
 import { useState, useEffect } from "react";
 import openInNew from '../assets/open-in-new.svg';
-import useFilteredPrograms from '../hooks/useFilteredPrograms';
 
 export default function ResultsTable({ programs: initialPrograms }) {
     const [programs, setPrograms] = useState(initialPrograms || []);
@@ -14,17 +13,6 @@ export default function ResultsTable({ programs: initialPrograms }) {
         setPrograms(initialPrograms);
         }
     }, [initialPrograms]);
-
-    // const updateStatus = (id) => {
-    //     setPrograms(programs.map(prog =>
-    //         prog.id === id ? { ...prog, status: "Applied" } : prog
-    //     ));
-    //     let applied = JSON.parse(localStorage.getItem('Applied')) || [];
-    //     if (!applied.includes(id)) {
-    //         applied.push(id);
-    //         localStorage.setItem('Applied', JSON.stringify(applied));
-    //     }
-    // };
 
     const toggleFavorite = (program) => {
         const updatedPrograms = programs.map((prog) =>

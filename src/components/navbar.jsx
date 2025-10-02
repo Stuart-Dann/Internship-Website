@@ -1,7 +1,7 @@
 import LoginDialog from "./loginDialog";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from '../assets/logo.webp';
+import logo from '../assets/logo.svg';
 import './navbar.css';
 
 export default function Navbar() {

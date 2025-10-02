@@ -8,6 +8,7 @@ import useFilteredPrograms from "../hooks/useFilteredPrograms";
 import generateFilterOptions from "../helpers/generateFilterOptions";
 import { useEffect, useState, useMemo } from "react";
 import { getInternships } from "../services/firestore";
+import { useSearchParams } from 'react-router-dom';
 
 export default function SearchPage() {
     const isMobile = useIsMobile();
@@ -15,13 +16,16 @@ export default function SearchPage() {
     const [loading, setLoading] = useState(true);
     const [programs, setPrograms] = useState([]);
     const [filterOptions, setFilterOptions] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
     const [selectedFilters, setSelectedFilters] = useState({
-        location: [],
-        subject: [],
-        company: [],
+        location: searchParams.get("location")?.split(",") || [],
+        subject: searchParams.get("subject")?.split(",") || [],
+        company: searchParams.get("company")?.split(",") || [],
     });
-    const [searchQuery, setSearchQuery] = useState("");
-    const [openProgramsOnly, setOpenProgramsOnly] = useState(false);
+    const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("search") || ""
+    );
+    const [openProgramsOnly, setOpenProgramsOnly] = useState(searchParams.get("openProgramsOnly") === "true");
 
     useEffect(() => {
         setLoading(true);
@@ -79,6 +83,42 @@ export default function SearchPage() {
         setSearchQuery(e.target.value.toLowerCase());
     };
 
+    const handleShowOnlyOpenChange = (e) => {
+        setOpenProgramsOnly(e.target.checked);
+    }
+
+    useEffect(() => {
+        const params = Object.fromEntries(searchParams.entries());
+
+        if (searchQuery) {
+        params.search = searchQuery;
+        } else {
+            delete params.search;
+        }
+        if (selectedFilters.location.length)
+            params.location = selectedFilters.location.join(",");
+        else{
+            delete params.location;
+        }
+        if (selectedFilters.subject.length)
+            params.subject = selectedFilters.subject.join(",");
+        else{
+            delete params.subject;
+        }
+        if (selectedFilters.company.length)
+            params.company = selectedFilters.company.join(",");
+        else{
+            delete params.company;
+        }
+        if (openProgramsOnly) {
+            params.openProgramsOnly = "true";
+        } else {
+            delete params.openProgramsOnly;
+        }
+
+        setSearchParams(params);
+    }, [searchQuery, selectedFilters, openProgramsOnly, setSearchParams]);
+
     return (
         <div className="search-page">
             <Navbar />
@@ -122,6 +162,7 @@ export default function SearchPage() {
                                 id="search-input"
                                 name="search"
                                 placeholder="Search Program Names e.g. Analyst..."
+                                value={searchQuery}
                             />
                         </div>
                         <div id="open-program">
@@ -130,7 +171,8 @@ export default function SearchPage() {
                                 id="open-programs"
                                 name="open-programs"
                                 value="Show Only Open Programs"
-                                onChange={(e) => setOpenProgramsOnly(e.target.checked)}
+                                onChange={handleShowOnlyOpenChange}
+                                checked={openProgramsOnly}
                             />
                             <label htmlFor="open-programs">Show Only Open Programs</label>
                         </div>
