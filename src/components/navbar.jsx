@@ -72,7 +72,7 @@ export default function Navbar() {
                 <span />
                 </div>
                 <ul className={open ? 'open' : ''}>
-                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/">Hme</Link></li>
                     <li><Link to="/internships">Internships</Link></li>
                     <li><button onClick={() => setIsOpen(true)} className='admin-login'>Staff</button></li>
                 </ul>
