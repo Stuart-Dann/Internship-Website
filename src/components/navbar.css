@@ -3,6 +3,18 @@ a{
     text-decoration: none;
 }
 
+.admin-login {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: poppins;   
+    font-size: 1em;
+    color: #56494E;
+    padding: 0;
+    border: none;
+    background-color: white;
+}
+
 .navbar {
     width: 100%;
     height: 80px;
@@ -25,6 +37,7 @@ nav ul {
     display: flex;
     flex-direction: row;
     gap: 15px;
+    align-items: center;
 }
 
 nav ul li{
@@ -69,6 +82,70 @@ nav ul li:hover {
     height: auto;
 }
 
+.logo-link{
+    padding-left: 2.25%;
+}
+.dialog-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.dialog-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 1em;
+    border-radius: 8px;
+    z-index: 1001;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.login-input{
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.login-input input{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* padding: 0.5em; */
+}
+
+.login-label{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.login-button{
+    background-color: #E5383B;
+    color: white;
+    border: none;
+    padding: 1em 2em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover{
+    background-color: #b32a2f;
+}
+
 /* Responsive styles */
 @media (max-width: 600px) {
     nav ul {
@@ -78,7 +155,6 @@ nav ul li:hover {
         width: 100%;
         background: white;
         flex-direction: column;
-        align-items: flex-start;
         gap: 0;
         padding: 1em 0;
         display: none;
@@ -101,5 +177,8 @@ nav ul li:hover {
         width: 30vw;
         max-width: 150px; 
         height: auto;
+    }
+    .login-form {
+        flex-direction: column;
     }
 }
