@@ -7,8 +7,8 @@ The platform allows users to browse internships, view details, and apply seamles
 
 ## 🚀 Features
 
-- **Modern Frontend** – Built with React [React](https://react.dev/) and Vite [Vite](https://vite.dev/) for fast, responsive performance.
-- **Serverless Backend** – Powered by Firebase [Firebase](https://firebase.google.com/) for authentication, data storage, and hosting.
+- **Modern Frontend** – Built with [React](https://react.dev/) and [Vite](https://vite.dev/) for fast, responsive performance.
+- **Serverless Backend** – Powered by [Firebase](https://firebase.google.com/) for authentication, data storage, and hosting.
 - **Authentication** – Secure sign-up and login for users.
 - **Real-time Data** – Internship listings dynamically loaded from Firestore.
 - **Scalable Deployment** – Hosted using Firebase Hosting with a serverless architecture.
