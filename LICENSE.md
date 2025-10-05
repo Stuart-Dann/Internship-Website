@@ -9,7 +9,7 @@ You may view and reference the code, but you may not:
 - Modify it for redistribution
 - Use it as part of another project without explicit permission
 
-For inquiries about using this project, please contact [Your Email/Website].
+For inquiries about using this project, please contact stuartdann03@gmail.com.
 
 ---
 
