@@ -4,7 +4,6 @@ import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useSt
 import { motion, AnimatePresence } from 'motion/react';
 
 import './RotatingText.css';
-import { pre } from 'motion/react-client';
 
 function cn(...classes) {
     return classes.filter(Boolean).join(' ');
