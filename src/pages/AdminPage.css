@@ -1,0 +1,40 @@
+.admin-page {
+    padding: 2em;
+    background-color: #fff;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 600px;
+    margin: auto;
+    padding: 2em;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.admin-form input {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.admin-form button {
+    background-color: #E5383B;
+    color: white;
+    border: none;
+    padding: 0.75em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin-title {
+    text-align: center;
+    color: #E5383B;
+}
+
+#subject{
+    border: #ccc 1px solid;
+    border-radius: 5px;
+}

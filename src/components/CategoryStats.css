@@ -1,0 +1,24 @@
+.category-stats {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: fit-content;
+    border: 2px solid #E5383B;
+    text-align: left;
+    font-size: 1em;
+}
+
+.category-stats ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0.5em;
+}
+
+.category-stats li {
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #BAB5B5;
+}
+
+.category-stats span{
+    color: #E5383B;
+}
