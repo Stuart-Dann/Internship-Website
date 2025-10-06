@@ -29,14 +29,15 @@ h2{
     gap: 1.5em;
     background-color: #E5383B;
     color: white;
-    padding: 1.25em 1.5em;
+    padding: 1.75em 2em;
     border: none;
-    border-radius: 100px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
     align-items: center;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); */
     height: fit-content;
+    font-weight: 600;
 }
 
 #start-search:hover {
@@ -53,6 +54,21 @@ h2{
         height: fit-content;
     }
 }
+
+#rotating-text-container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+#rotating-text{
+    color: white;
+    font-weight: 600;
+    padding: 0.25em 0.75em;
+    border-radius: 5px;
+}
+
 
 @media (max-width: 600px) {
     .landing-page {

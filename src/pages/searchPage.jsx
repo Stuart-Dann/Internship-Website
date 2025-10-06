@@ -1,8 +1,8 @@
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "./searchPage.css";
-import ResultsTable from "../components/resultsTable";
-import FilterGroup from "../components/filterGroups";
+import ResultsTable from "../components/ResultsTable";
+import FilterGroup from "../components/FilterGroups";
 import useIsMobile from "../hooks/isMobile";
 import useFilteredPrograms from "../hooks/useFilteredPrograms";
 import generateFilterOptions from "../helpers/generateFilterOptions";

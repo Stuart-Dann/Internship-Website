@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from '../contexts/useAuth';
 import './adminPage.css';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import { addInternship } from '../services/firestore';
 
 export default function AdminPage() {
@@ -50,6 +50,19 @@ export default function AdminPage() {
         checkAdminStatus();
     }, [user]);
 
+    const handleSubjectChange = (event) => {
+        const selectElement = event.target;
+        const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+
+        if (selectedOptions.includes("all")) {
+            // If "all" is selected, deselect all other options
+            selectElement.value = "all";
+        } else {
+            // If any other option is selected, remove "all" if present
+            selectElement.querySelector('option[value="all"]').selected = false;
+        }
+    };
+
     return (
         <div>
             <Navbar />
@@ -62,7 +75,17 @@ export default function AdminPage() {
                     <label htmlFor='company'>Company:</label>
                     <input id='company' type="text" name="company" autoComplete='off'/>
                     <label htmlFor='subject'>Subject:</label>
-                    <input id='subject' type="text" name="subject" autoComplete='off'/>
+                    <select id='subject' name="subject" multiple onChange={handleSubjectChange}>
+                        <option value="all">All Subjects</option>
+                        <option value="physics">Physics</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="chemistry">Chemistry</option>
+                        <option value="biology">Biology</option>
+                        <option value="computer_science">Computer Science</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="biotech">Biotech</option>
+                        <option value="data_science">Data Science</option>
+                    </select>
                     <label htmlFor='location'>Location:</label>
                     <input id='location' type="text" name="location" autoComplete='off'/>
                     <label htmlFor='href'>Link:</label>

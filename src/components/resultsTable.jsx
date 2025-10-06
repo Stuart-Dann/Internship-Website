@@ -1,5 +1,5 @@
 // components/ResultsTable.jsx
-import FavouriteStar from "./favouriteStar";
+import FavouriteStar from "./FavouriteStar";
 import './resultsTable.css';
 import { addToFavourites } from "../services/favourite";
 import { useState, useEffect } from "react";
