@@ -6,9 +6,13 @@ import { Link } from 'react-router-dom';
 import RotatingText from '../components/RotatingText';
 import AnimatedContent from '../components/AnimatedContent';
 import useIsMobile from '../hooks/isMobile';    
+import { useEffect } from 'react';
 
 export default function LandingPage() {
-    const isMobile = useIsMobile();
+    useEffect(() => {
+        const isMobile = useIsMobile();
+    }, []);
+    
 
     return (
     <div className='landing-page'>
