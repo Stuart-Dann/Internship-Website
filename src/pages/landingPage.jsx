@@ -1,7 +1,6 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer';
 import './landingPage.css';
-import rightArrow from '../assets/rightArrow.svg';
 import CategoryStats from '../components/CategoryStats';
 import { Link } from 'react-router-dom';
 import RotatingText from '../components/RotatingText';
