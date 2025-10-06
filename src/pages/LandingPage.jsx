@@ -5,8 +5,11 @@ import CategoryStats from '../components/CategoryStats';
 import { Link } from 'react-router-dom';
 import RotatingText from '../components/RotatingText';
 import AnimatedContent from '../components/AnimatedContent';
+import useIsMobile from '../hooks/isMobile';    
 
 export default function LandingPage() {
+    const isMobile = useIsMobile();
+
     return (
     <div className='landing-page'>
         <Navbar />
@@ -14,6 +17,7 @@ export default function LandingPage() {
             <AnimatedContent>
             <h1>Actual internships, in the field you love.</h1>
             <h2>We find them all, so you don't have to.</h2>
+            {isMobile ? <p></p> : 
             <p id='rotating-text-container'>
                 Find internships in{" "}
                 <RotatingText id="rotating-text"
@@ -34,6 +38,7 @@ export default function LandingPage() {
                     staggerFrom="last"
                 />
                 </p>
+            }
             </AnimatedContent>
             <div id='search-stats'>
                 <AnimatedContent
