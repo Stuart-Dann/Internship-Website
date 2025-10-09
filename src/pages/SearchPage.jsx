@@ -9,6 +9,7 @@ import generateFilterOptions from "../helpers/generateFilterOptions";
 import { useEffect, useState, useMemo } from "react";
 import { getInternships } from "../services/firestore";
 import { useSearchParams } from 'react-router-dom';
+import AnimatedContent from "../components/AnimatedContent";
 
 export default function SearchPage() {
     const isMobile = useIsMobile();
@@ -125,6 +126,7 @@ export default function SearchPage() {
             <div id="search-page-body">
                 <div id="filter-body">
                     {isMobile ? (
+                        <AnimatedContent>
                         <div className="mobile-filters">
                             {filterOptions.map((filter) => (
                                 <FilterGroup
@@ -138,8 +140,15 @@ export default function SearchPage() {
                                 />
                             ))}
                         </div>
+                        </AnimatedContent>
                     ) : (
-                        filterOptions.map((filter) => (
+                        <AnimatedContent
+                            delay={0.2}
+                            direction='horizontal'
+                            reverse={true}
+                            >
+                        {filterOptions.map((filter) => (
+
                             <FilterGroup
                                 key={filter.title}
                                 data={{ ...filter, isMobile }}
@@ -149,10 +158,12 @@ export default function SearchPage() {
                                 selectedFilters={selectedFilters[filter.title.toLowerCase()]
                                 }
                             />
-                        ))
+                        ))}
+                    </AnimatedContent>
                     )}
                 </div>
                 <div id="search-results">
+                    <AnimatedContent>
                     <div id="search-body">
                         <div className="search-field">
                             <p>Search:</p>
@@ -177,10 +188,16 @@ export default function SearchPage() {
                             <label htmlFor="open-programs">Show Only Open Programs</label>
                         </div>
                     </div>
+                    </AnimatedContent>
                     <div id="results-container">
                         {loading && <p>Loading internships...</p>}
                         {error && <p className="error-message">{error}</p>}
-                        {!loading && !error && <ResultsTable programs={filteredPrograms} />}
+                        {!loading && !error && 
+                        <AnimatedContent
+                        delay={0.2}>
+                        <ResultsTable programs={filteredPrograms} />
+                        </AnimatedContent>
+                        }
                     </div>
                 </div>
             </div>

@@ -45,4 +45,7 @@ a {
     .results-table td {
         font-size: 0.5em;
     }
+    .results-table {
+        overflow-x: scroll;
+    }
 }
