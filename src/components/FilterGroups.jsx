@@ -1,4 +1,4 @@
-import './filterGroups.css';
+import './FilterGroups.css';
 import {useState} from 'react';
 
 // components/FilterGroup.jsx

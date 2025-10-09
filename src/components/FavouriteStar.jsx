@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './favouriteStar.css';
+import './FavouriteStar.css';
 
 export default function FavouriteStar({ initial = false, onToggle }) {
     const [isFavourite, setIsFavourite] = useState(initial);

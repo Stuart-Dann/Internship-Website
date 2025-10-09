@@ -1,6 +1,6 @@
 // components/ResultsTable.jsx
 import FavouriteStar from "./FavouriteStar";
-import './resultsTable.css';
+import './ResultsTable.css';
 import { addToFavourites } from "../services/favourite";
 import { useState, useEffect } from "react";
 import openInNew from '../assets/open-in-new.svg';

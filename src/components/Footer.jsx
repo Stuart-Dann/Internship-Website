@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './footer.css';
+import './Footer.css';
 // import lancaster from '../assets/lancasterUniLogo.png';
 // import ukaea from '../assets/ukaea.png'
 

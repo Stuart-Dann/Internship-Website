@@ -1,4 +1,4 @@
-import './categoryStats.css';
+import './CategoryStats.css';
 
 export default function CategoryStats() {
     return (

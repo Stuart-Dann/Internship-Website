@@ -6,7 +6,7 @@ import { useAuth } from "../contexts/useAuth";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.svg';
-import './navbar.css';
+import './Navbar.css';
 
 export default function Navbar() {
     const [open, setOpen] = useState(false); // burger menu

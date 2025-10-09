@@ -2,7 +2,7 @@ import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react
 import { useState } from 'react'
 import { signInWithEmailAndPassword, signOut as firebaseSignOut } from 'firebase/auth';
 import { auth } from '../services/firebase';
-import './loginDialog.css';
+import './LoginDialog.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/useAuth';
 import { useEffect } from 'react';

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { initializeAppCheckWithConsent } from "../services/firebase"; 
-import "./cookieConsentBanner.css";
+import "./CookieConsentBanner.css";
 import { Link } from 'react-router-dom';
 
 export default function CookieConsentBanner() {
