@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import "./searchPage.css";
+import "./SearchPage.css";
 import ResultsTable from "../components/ResultsTable";
 import FilterGroup from "../components/FilterGroups";
 import useIsMobile from "../hooks/isMobile";

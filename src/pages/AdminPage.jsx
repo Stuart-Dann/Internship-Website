@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from '../contexts/useAuth';
-import './adminPage.css';
+import './AdminPage.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { addInternship } from '../services/firestore';
