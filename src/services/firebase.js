@@ -38,9 +38,9 @@ export const initializeAppCheckWithConsent = () => {
 			provider: new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_SITE_KEY),
 			isTokenAutoRefreshEnabled: true,
 		});
-		console.log("App Check initialized with ReCAPTCHA v3.");
+		// console.log("App Check initialized with ReCAPTCHA v3.");
 	} else {
-		console.warn("App Check not initialized due to lack of valid cookie consent.");
+		// console.warn("App Check not initialized due to lack of valid cookie consent.");
 	}
 };
 
