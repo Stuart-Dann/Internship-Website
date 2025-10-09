@@ -1,11 +1,11 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LandingPage from './pages/landingPage';
-import SearchPage from './pages/searchPage';
-import AdminPage from './pages/adminPage';
+import LandingPage from './pages/LandingPage';
+import SearchPage from './pages/SearchPage';
+import AdminPage from './pages/AdminPage';
 import { AuthProvider } from './contexts/authContext';
-import CookieConsentBanner from './components/cookieConsentBanner';
-import CookiePage from './pages/cookiePage';
+import CookieConsentBanner from './components/CookieConsentBanner';
+import CookiePage from './pages/CookiePage';
 
 function App() {
   return (
