@@ -7,7 +7,16 @@ export default function useFilteredPrograms({ programs, selectedFilters, searchQ
 		const filtered = programs.filter((program) => {
 			const matchesLocation = selectedFilters.location.length === 0 || (program.location && selectedFilters.location.includes(program.location.toLowerCase()));
 
-			const matchesSubject = selectedFilters.subject.length === 0 || (program.subject && selectedFilters.subject.includes(program.subject.toLowerCase()));
+			const matchesSubject =
+				selectedFilters.subject.length === 0 ||
+				(program.subject.split("/") &&
+					selectedFilters.subject.some((sub) =>
+						program.subject
+							.split("/")
+							.map((s) => s.trim().toLowerCase())
+							.includes(sub)
+					)) ||
+				program.subject.includes("All STEM");
 
 			const matchesCompany = selectedFilters.company.length === 0 || (program.company && selectedFilters.company.includes(program.company.toLowerCase()));
 

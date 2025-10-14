@@ -20,11 +20,13 @@ export default function generateFilterOptions(programs) {
 		},
 		{
 			title: "Subject",
-			options: Array.from(subjects).map((subject) => ({
-				value: subject.toLowerCase(),
-				label: subject,
-				count: programs.filter((p) => p.subject === subject).length,
-			})),
+			options: Array.from(subjects).flatMap((subject) =>
+				subject.split("/").map((sub) => ({
+					value: sub.toLowerCase(),
+					label: sub,
+					count: programs.filter((p) => p.subject.split("/").includes(sub) || p.subject === "All STEM").length,
+				}))
+			),
 		},
 		{
 			title: "Company",
