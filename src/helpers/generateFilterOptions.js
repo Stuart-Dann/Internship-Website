@@ -5,7 +5,9 @@ export default function generateFilterOptions(programs) {
 
 	programs.forEach((program) => {
 		if (program.location) locations.add(program.location);
-		if (program.subject) subjects.add(program.subject);
+		if (program.subject) {
+			program.subject.split("/").forEach((sub) => subjects.add(sub.trim()));
+		}
 		if (program.company) companies.add(program.company);
 	});
 
@@ -20,13 +22,11 @@ export default function generateFilterOptions(programs) {
 		},
 		{
 			title: "Subject",
-			options: Array.from(subjects).flatMap((subject) =>
-				subject.split("/").map((sub) => ({
-					value: sub.toLowerCase(),
-					label: sub,
-					count: programs.filter((p) => p.subject.split("/").includes(sub) || p.subject === "All STEM").length,
-				}))
-			),
+			options: Array.from(subjects).map((subject) => ({
+				value: subject.toLowerCase(),
+				label: subject,
+				count: programs.filter((p) => p.subject.split("/").includes(subject) || p.subject === "All STEM").length,
+			})),
 		},
 		{
 			title: "Company",

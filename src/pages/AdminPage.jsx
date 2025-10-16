@@ -17,10 +17,13 @@ export default function AdminPage() {
     const addInternshipHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
+        const allStemChecked = formData.get("allStem") === "on";
+        const subjectValue = allStemChecked ? "All STEM" : formData.getAll("subject").join('/');
+
         const internshipData = {
             program: formData.get("program"),
             company: formData.get("company"),
-            subject: formData.getAll("subject").join('/'),
+            subject: subjectValue,
             href: formData.get("href"),
             location: formData.get("location"),
             openDate: new Date(formData.get("openDate")),
@@ -82,14 +85,14 @@ export default function AdminPage() {
                     </div>
                     <label htmlFor='subject'>Subject:</label>
                     <select id='subject' name="subject" multiple>
-                        <option value="physics">Physics</option>
-                        <option value="mathematics">Mathematics</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="biology">Biology</option>
-                        <option value="computer_science">Computer Science</option>
-                        <option value="engineering">Engineering</option>
-                        <option value="biotech">Biotech</option>
-                        <option value="data_science">Data Science</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Biotech">Biotech</option>
+                        <option value="Data Science">Data Science</option>
                     </select>
                     <label htmlFor='location'>Location:</label>
                     <input id='location' type="text" name="location" autoComplete='off'/>
