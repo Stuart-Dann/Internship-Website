@@ -20,7 +20,7 @@ export default function AdminPage() {
         const internshipData = {
             program: formData.get("program"),
             company: formData.get("company"),
-            subject: formData.get("subject"),
+            subject: formData.getAll("subject").join('/'),
             href: formData.get("href"),
             location: formData.get("location"),
             openDate: new Date(formData.get("openDate")),
@@ -33,7 +33,7 @@ export default function AdminPage() {
             notify("Internship added successfully!", 'success');
             e.target.reset(); // Reset form after success
         } catch (error) {
-            notify("Failed to add internship. Please try again.", error.message);
+            notify("Failed to add internship. Please try again.", "error");
         }
     };
 
@@ -50,16 +50,18 @@ export default function AdminPage() {
         checkAdminStatus();
     }, [user]);
 
-    const handleSubjectChange = (event) => {
-        const selectElement = event.target;
-        const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
-
-        if (selectedOptions.includes("all")) {
-            // If "all" is selected, deselect all other options
-            selectElement.value = "all";
+    const handleAllStemChange = (e) => {
+        const subjectSelect = document.getElementById('subject');
+        if (e.target.checked) {
+            for (let option of subjectSelect.options) {
+                option.selected = true;
+            }
+            notify("All STEM subjects selected", 'info');
         } else {
-            // If any other option is selected, remove "all" if present
-            selectElement.querySelector('option[value="all"]').selected = false;
+            
+            for (let option of subjectSelect.options) {
+                option.selected = false;
+            }
         }
     };
 
@@ -74,9 +76,12 @@ export default function AdminPage() {
                     <input id='program' type="text" name="program" autoComplete='off'/>
                     <label htmlFor='company'>Company:</label>
                     <input id='company' type="text" name="company" autoComplete='off'/>
+                    <div id='all-stem-button'>
+                        <label htmlFor='allStem'>All STEM:</label>
+                        <input id='allStem' type="checkbox" name="allStem" onChange={handleAllStemChange}/>
+                    </div>
                     <label htmlFor='subject'>Subject:</label>
-                    <select id='subject' name="subject" multiple onChange={handleSubjectChange}>
-                        <option value="all">All Subjects</option>
+                    <select id='subject' name="subject" multiple>
                         <option value="physics">Physics</option>
                         <option value="mathematics">Mathematics</option>
                         <option value="chemistry">Chemistry</option>

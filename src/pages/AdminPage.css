@@ -34,7 +34,23 @@
     color: #E5383B;
 }
 
-#subject{
+#subject {
     border: #ccc 1px solid;
     border-radius: 5px;
+}
+
+#subject option {
+    padding: 0.5em;
+}
+
+#subject:focus {
+    outline: none;
+}
+
+#all-stem-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
 }
