@@ -36,5 +36,14 @@ export default function generateFilterOptions(programs) {
 				count: programs.filter((p) => p.company === company).length,
 			})),
 		},
+		{
+			title: "Year",
+			options: [
+				{ value: "1st", label: "1st", count: programs.filter((p) => p.year?.includes("1st")).length },
+				{ value: "2nd", label: "2nd", count: programs.filter((p) => p.year?.includes("2nd")).length },
+				{ value: "3rd", label: "3rd", count: programs.filter((p) => p.year?.includes("3rd")).length },
+				{ value: "4th", label: "4th", count: programs.filter((p) => p.year?.includes("4th")).length },
+			],
+		},
 	];
 }

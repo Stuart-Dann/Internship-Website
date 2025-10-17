@@ -35,6 +35,7 @@ export default function ResultsTable({ programs: initialPrograms }) {
                 <tr>
                     <th></th>
                     {/* <th>Status</th> */}
+                    <th>Application Year</th>
                     <th>Program Name</th>
                     <th>Company Name</th>
                     <th>Location</th>
@@ -59,6 +60,7 @@ export default function ResultsTable({ programs: initialPrograms }) {
                             />
                             </td>
                             {/* <td>{program.status}</td> */}
+                            <td>{program.year?.join(", ")}</td>
                             <td>
                             <a href={program.href} target="_blank" rel="noopener noreferrer">
                                 {program.program}<img src={openInNew} alt="Open in new" style={{ width: '1em', height: '1em', verticalAlign: 'middle' }} />

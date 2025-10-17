@@ -33,15 +33,16 @@ export default function FilterGroup({ data, onFilterChange, selectedFilters }) {
             className="mobile-select"
             onChange={handleMobileChange}
             >
-            {options.map((opt) => (
-                <option 
-                    key={opt.value} 
-                    value={opt.value.toLowerCase()}
-                    selected={selectedFilters.includes(opt.value.toLowerCase())}
-                >
-                {opt.label} ({opt.count})
-                </option>
-            ))}            </select>
+                {options.map((opt) => (
+                    <option 
+                        key={opt.value} 
+                        value={opt.value.toLowerCase()}
+                        selected={selectedFilters.includes(opt.value.toLowerCase())}
+                    >
+                    {opt.label} ({opt.count})
+                    </option>
+                ))}
+            </select>
         </div>
         );
     }
@@ -53,16 +54,17 @@ export default function FilterGroup({ data, onFilterChange, selectedFilters }) {
             {displayedOptions.map((opt) => (
             <div className="filter" key={opt.value}>
                 <div className="filter-details">
-                <input 
-                    type="checkbox"
-                    id={opt.value}
-                    name={opt.value}
-                    value={opt.value.toLowerCase()}
-                    onChange={handleChange}
-                    checked={selectedFilters.includes(opt.value.toLowerCase())}
-                />
-                <label htmlFor={opt.value}>{opt.label}</label>                </div>
-                <p className="filter-stats">{opt.count}</p>
+                    <input 
+                        type="checkbox"
+                        id={opt.value}
+                        name={opt.value}
+                        value={opt.value.toLowerCase()}
+                        onChange={handleChange}
+                        checked={selectedFilters.includes(opt.value.toLowerCase())}
+                    />
+                    <label htmlFor={opt.value}>{opt.label}</label>
+                </div>
+            <p className="filter-stats">{opt.count}</p>
             </div>
             ))}
             {options.length > 5 && (

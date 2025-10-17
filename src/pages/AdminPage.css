@@ -6,6 +6,7 @@
 .admin-form {
     display: flex;
     flex-direction: column;
+    text-align: center;
     gap: 1em;
     max-width: 600px;
     margin: auto;
@@ -49,8 +50,31 @@
 
 #all-stem-button{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.year-checkbox {
+    margin-right: 0.5em;
+}
+
+.year-checkbox-container{
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 0.5em;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: #E5383B;
+    transform: scale(1.5);
+}
+
+#year-label {
+    /* font-weight: bold; */
+    margin-bottom: 0;
 }

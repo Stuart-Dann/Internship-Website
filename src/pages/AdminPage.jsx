@@ -29,6 +29,7 @@ export default function AdminPage() {
             openDate: new Date(formData.get("openDate")),
             closingDate: new Date(formData.get("closingDate")),
             pay: formData.get("pay"),
+            year: formData.getAll("year"),
         };
 
         try {
@@ -79,6 +80,19 @@ export default function AdminPage() {
                     <input id='program' type="text" name="program" autoComplete='off'/>
                     <label htmlFor='company'>Company:</label>
                     <input id='company' type="text" name="company" autoComplete='off'/>
+                    <p id='year-label'>Year:</p>
+                    <div className='year-checkbox-container'>
+                        <label htmlFor='1st'>1st</label>
+                        <input className='year-checkbox' type='checkbox' name='year' value='1st'/>
+                        <label htmlFor='2nd'>2nd</label>
+                        <input className='year-checkbox' type='checkbox' name='year' value='2nd'/>
+                        <label htmlFor='3rd'>3rd</label>
+                        <input className='year-checkbox' type='checkbox' name='year' value='3rd'/>
+                        <label htmlFor='4th'>4th</label>
+                        <input className='year-checkbox' type='checkbox' name='year' value='4th'/>
+                        <label htmlFor='5th'>5th</label>
+                        <input className='year-checkbox' type='checkbox' name='year' value='5th'/>
+                    </div>
                     <div id='all-stem-button'>
                         <label htmlFor='allStem'>All STEM:</label>
                         <input id='allStem' type="checkbox" name="allStem" onChange={handleAllStemChange}/>

@@ -20,6 +20,8 @@ export default function useFilteredPrograms({ programs, selectedFilters, searchQ
 
 			const matchesCompany = selectedFilters.company.length === 0 || (program.company && selectedFilters.company.includes(program.company.toLowerCase()));
 
+			const matchesYear = selectedFilters.year.length === 0 || (program.year && program.year.some((yr) => selectedFilters.year.includes(yr.toLowerCase())));
+
 			const matchesSearchQuery = searchQuery === "" || program.program.toLowerCase().includes(searchQuery);
 
 			const matchesOpenPrograms =
@@ -30,7 +32,7 @@ export default function useFilteredPrograms({ programs, selectedFilters, searchQ
 					const currentDate = new Date();
 					return !isNaN(openDate.getTime()) && !isNaN(closingDate.getTime()) && openDate <= currentDate && closingDate >= currentDate;
 				})();
-			return matchesLocation && matchesSubject && matchesCompany && matchesSearchQuery && matchesOpenPrograms;
+			return matchesLocation && matchesSubject && matchesCompany && matchesYear && matchesSearchQuery && matchesOpenPrograms;
 		});
 		const sorted = filtered.sort((a, b) => {
 			if (a.isFavourite && !b.isFavourite) return -1;

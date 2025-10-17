@@ -7,7 +7,7 @@ const analytics = getAnalytics();
 
 // Add an internship
 export async function addInternship(internshipData) {
-	const { program, company, subject, href, location, closingDate, openDate, pay } = internshipData;
+	const { program, company, subject, href, location, closingDate, openDate, pay, year } = internshipData;
 
 	if (!program || !company || !subject || !href || !location || !closingDate || !openDate) {
 		throw new Error("Missing required fields.");
@@ -23,6 +23,7 @@ export async function addInternship(internshipData) {
 			openDate: openDate,
 			closingDate: closingDate,
 			pay: pay || "Unpaid",
+			year: year || [],
 		});
 		logEvent(analytics, "add_internship", { id: docRef.id });
 		return { id: docRef.id, message: "Internship added successfully!" };
@@ -42,6 +43,7 @@ export async function getInternships() {
 			openDate: doc.data().openDate?.toDate() || "Invalid date",
 			closingDate: doc.data().closingDate?.toDate() || "Invalid date",
 			pay: doc.data().pay || "Unpaid",
+			year: doc.data().year || [],
 		}));
 		return internships;
 	} catch (error) {

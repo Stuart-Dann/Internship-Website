@@ -11,9 +11,9 @@
 }
 
 input {
-        cursor: pointer;
-        accent-color: #E5383B;
-    }
+    cursor: pointer;
+    accent-color: #E5383B;
+}
 
 .filter-details{
     display: flex;

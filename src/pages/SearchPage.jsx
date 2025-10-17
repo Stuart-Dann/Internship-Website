@@ -22,6 +22,7 @@ export default function SearchPage() {
         location: searchParams.get("location")?.split(",") || [],
         subject: searchParams.get("subject")?.split(",") || [],
         company: searchParams.get("company")?.split(",") || [],
+        year: searchParams.get("year")?.split(",") || [],
     });
     const [searchQuery, setSearchQuery] = useState(
     searchParams.get("search") || ""
@@ -110,6 +111,11 @@ export default function SearchPage() {
             params.company = selectedFilters.company.join(",");
         else{
             delete params.company;
+        }
+        if (selectedFilters.year.length) {
+            params.year = selectedFilters.year.join(",");
+        } else {
+            delete params.year;
         }
         if (openProgramsOnly) {
             params.openProgramsOnly = "true";
