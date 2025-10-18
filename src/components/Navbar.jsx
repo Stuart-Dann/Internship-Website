@@ -1,13 +1,8 @@
-import { useState, useCallback,  } from "react";
-import { Description, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { signInWithEmailAndPassword, signOut as firebaseSignOut } from "firebase/auth";
-import { auth } from "../services/firebase";
-import { useAuth } from "../contexts/useAuth";
-import { useEffect } from "react";
+import { useState  } from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.svg';
 import './Navbar.css';
-import LoginDialog from './loginDialog';
+import LoginDialog from './LoginDialog';
 
 export default function Navbar() {
     const [open, setOpen] = useState(false); // burger menu
