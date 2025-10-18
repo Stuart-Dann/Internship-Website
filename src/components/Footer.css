@@ -67,3 +67,17 @@
     gap: 1em;
     justify-content: center;
 }
+
+@media (max-width: 600px) {
+    .footer{
+        flex-direction: column;
+        gap: 1.5em;
+        padding: 5%;
+    }
+    .footer-links{
+        order: -1; /* Move links to the top on small screens */
+    }
+    #mailing-dialog-button{
+        margin-left: 0;
+    }
+}
