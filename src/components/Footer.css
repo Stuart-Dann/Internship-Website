@@ -4,8 +4,8 @@
     padding-right: 5%;
     display: flex;
     align-items: center;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between; /* Ensures links are centered and button is on the right */
     height: fit-content;
     @media (max-width: 600px) {
         align-items: center;
@@ -39,4 +39,31 @@
 }
 .footer p{
     margin: 0;
+}
+
+#mailing-dialog-button{
+    background-color: #E5383B;
+    color: white;
+    border: none;
+    padding: 2em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto;
+    align-self: center;
+    font-size: 1em;
+}
+
+#mailing-dialog-button:hover{
+    background-color: #b32a2f;
+}
+
+.footer-links{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
 }

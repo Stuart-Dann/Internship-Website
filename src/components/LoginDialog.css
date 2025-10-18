@@ -53,11 +53,3 @@
 .login-button:hover{
     background-color: #b32a2f;
 }
-
-.admin-login{
-    font-size: 0.5em;
-    border: transparent;
-    border-bottom: 1px solid #E5383B;
-    cursor: pointer;
-    background-color: white;
-}

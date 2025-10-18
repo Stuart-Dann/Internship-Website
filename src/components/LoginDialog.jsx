@@ -9,10 +9,13 @@ import { useEffect } from 'react';
 import { useCallback } from 'react';
 
 
-export default function LoginDialog() {
-    let [isOpen, setIsOpen] = useState(false);
+export default function LoginDialog({isOpen, onClose}) {
     let [isAdmin, setIsAdmin] = useState(false)
     const { user } = useAuth();
+
+        if (!isOpen) {
+        return null;
+    }
 
     const checkAdmin = useCallback(async () => {
         if (user) {
@@ -59,8 +62,7 @@ export default function LoginDialog() {
 
     return (
         <>
-        <button onClick={() => setIsOpen(true)} className='admin-login'>Admin Login</button>
-        <Dialog open={isOpen} onClose={() => setIsOpen(false)} className={"dialog-root"}>
+        <Dialog open={isOpen} onClose={onClose} className={"dialog-root"}>
             <div className="dialog-backdrop" aria-hidden="true" />
             <div className="dialog-container">
                 <DialogPanel>
@@ -88,7 +90,8 @@ export default function LoginDialog() {
                             style={{ display: 'none' }}
                             tabIndex={-1}
                             autoComplete="off"
-                        />                        <button type="submit" className='login-button'>Login</button>
+                        />
+                        <button type="submit" className='login-button'>Login</button>
                     </form>}
                 </DialogPanel>
             </div>

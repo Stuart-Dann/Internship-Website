@@ -1,0 +1,41 @@
+.mailing-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+}
+
+.mailing-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.email-input {
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.mailing-button {
+    background-color: #E5383B;
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 0.75em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mailing-button:hover {
+    background-color: #c8313a;
+}
+
+.mailing-button:focus {
+    outline: 2px solid #E5383B;
+    outline-offset: 2px;
+}

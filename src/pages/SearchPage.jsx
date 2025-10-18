@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar"
 import Footer from "../components/Footer";
 import "./SearchPage.css";
 import ResultsTable from "../components/ResultsTable";

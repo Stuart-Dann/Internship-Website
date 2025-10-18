@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "./firebase"; // Ensure `db` is initialized in your `firebase.js`
 import { onSnapshot } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
@@ -73,5 +73,49 @@ export function subscribeToItems(callback) {
 	} catch (error) {
 		logEvent(analytics, "subscribe_to_items_error", { error: error.message });
 		throw new Error("Failed to fetch internships onSnapshot.");
+	}
+}
+
+async function getMailingListSubscribers() {
+	try {
+		const snapshot = await getDocs(collection(db, "mailingList"));
+		const subscribers = snapshot.docs.map((doc) => ({
+			id: doc.id,
+			...doc.data(),
+		}));
+		return subscribers;
+	} catch (error) {
+		logEvent(analytics, "get_mailing_list_subscribers_error", { error: error.message });
+		throw new Error("Failed to fetch mailing list subscribers.");
+	}
+}
+
+export async function addMailingListSubscriber(email) {
+	if (!email || typeof email !== "string" || !email.trim()) {
+		throw new Error("Email is required.");
+	}
+
+	// Basic email format validation
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (!emailRegex.test(email)) {
+		throw new Error("Invalid email format.");
+	}
+
+	try {
+		const emailId = email.toLowerCase(); // Use lowercase to ensure consistency
+		const docRef = doc(db, "mailingList", emailId); // Set the document ID to the email
+
+		// Check if the email already exists
+		const existingDoc = await getDoc(docRef);
+		if (existingDoc.exists()) {
+			return { message: "exists" };
+		}
+
+		// Add the email to the database
+		await setDoc(docRef, { email });
+		return { message: "Subscribed successfully!" };
+	} catch (error) {
+		console.error("Error adding subscriber:", error.message);
+		throw new Error("Failed to subscribe to mailing list.");
 	}
 }
