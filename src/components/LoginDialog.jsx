@@ -13,10 +13,6 @@ export default function LoginDialog({isOpen, onClose}) {
     let [isAdmin, setIsAdmin] = useState(false)
     const { user } = useAuth();
 
-        if (!isOpen) {
-        return null;
-    }
-
     const checkAdmin = useCallback(async () => {
         if (user) {
             const tokenResult = await user.getIdTokenResult();
@@ -60,7 +56,7 @@ export default function LoginDialog({isOpen, onClose}) {
         }
     }, [isOpen, checkAdmin]);
 
-    return (
+    return isOpen ? (
         <>
         <Dialog open={isOpen} onClose={onClose} className={"dialog-root"}>
             <div className="dialog-backdrop" aria-hidden="true" />
@@ -96,6 +92,5 @@ export default function LoginDialog({isOpen, onClose}) {
                 </DialogPanel>
             </div>
         </Dialog>
-        </>
-    )
+        </> ) : null;
 }
